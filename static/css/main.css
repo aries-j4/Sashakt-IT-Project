@@ -1,0 +1,54 @@
+.navbar {
+    background:	rgb(255,140,0);
+}
+
+.content-section {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    padding: -5px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    height: 100% !important;
+    width:100% ;
+    color: #0d048d;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', serif;
+    font-size: 20px;
+}
+
+.form-box {
+    width: 400px;
+    height: 560px;
+    position: relative;
+    margin: 6% auto;
+    background: rgb(255, 255, 255);
+    padding: 7px;
+    line-height: 1;
+}
+
+.border-bottom {
+    color: #0d048d;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', serif;
+    font-size: 25px;
+    text-align: center;
+}
+
+.btn-outline-info{
+    width: 85%;
+    cursor:pointer;
+    border-radius: : 30px;
+    background: linear-gradient(to right, #ff105f,#ffad06);
+    margin: 0px 30px;
+    border: 0;
+    outline: none;
+    color: white;
+    position:relative;
+    font-size: 20px;
+}
+
+
