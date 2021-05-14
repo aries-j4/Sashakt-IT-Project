@@ -41,7 +41,7 @@
 .btn-outline-info{
     width: 85%;
     cursor:pointer;
-    border-radius: : 30px;
+    border-radius: 30px;
     background: linear-gradient(to right, #ff105f,#ffad06);
     margin: 0px 30px;
     border: 0;
@@ -49,6 +49,7 @@
     color: white;
     position:relative;
     font-size: 20px;
+
 }
 
 
