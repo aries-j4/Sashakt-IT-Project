@@ -1,7 +1,16 @@
 {%extends "layout.html"%}
 {%block content%}
 
-<H1>Sashakt-You Never Walk Alone</H1>
-<p>Sashakt is an online awareness and emergency alert system for combating crime against women.</p>
-
+    <div class="home">
+        <header class="page-header header container-fluid">
+            <div class="overlay"></div>
+            <div class="description">
+                <h1>Sashakt</h1>
+                <p>You Never Walk Alone!</p>
+                <button class="btn btn-outline-secondary btn-lg"><a href="">Know More!</button></a>
+                <button class="btn btn-outline-secondary btn-lg"><a href="">Instant Help!</button></a>
+                <button class="btn btn-outline-secondary btn-lg"><a href="{{url_for('register')}}">Join Today!</button></a>
+            </div>
+        </header>
+    </div>
 {%endblock%}
