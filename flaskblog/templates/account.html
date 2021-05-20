@@ -1,6 +1,38 @@
 {%extends "layout.html"%}
 {%block content%}
 
-<H1>{{ current_user.username }}</H1>
+    <div class ="box">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ image_file }}">
+            <div class="media-body">
+              <h2 class="account-heading">{{ current_user.username }}</h2>
+              <p class="text-secondary">{{ current_user.email }}</p>
+              <br>
+              <h4><center>Your Emergency Contact Details</h4></center><br>
+              <center>
+              <table border = 1, width =10>
+                  <tr>
+                      <th>Name of Emergency Contact</th>
+                      <th>Mobile Phone Number</th>
+                      <th>Relation To User</th>
+                  </tr>
+              {% for contact in contacts %}
+                {% if contact.client == current_user %}
+                    <tr>
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.phone}}</td>
+                        <td>{{contact.relation}}</td>
+                    </tr>   
+                {% endif %}
+              {% endfor %}
+            </table></center>
+            
+            <br><br>
+              <button type="button" class="btn btn-secondary">Update Account</button>
+              <button type="button" class="btn btn-secondary"><a href="{{ url_for('contacts') }}">Add Contacts</a></button>
+            </div>
+            <right><button type="button" class="btn btn-danger" onclick="window.location.href='{{ url_for( 'send_sos') }}'">Send SOS</button></right>
+        </div>
+    </div>
 
 {%endblock%}

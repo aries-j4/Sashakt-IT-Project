@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request
 from flaskblog import app, db, bcrypt
-from flaskblog.forms import RegistrationForm, LoginForm
-from flaskblog.models import User
+from flaskblog.forms import RegistrationForm, LoginForm, ContactForm
+from flaskblog.models import User, Contacts
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
@@ -50,4 +50,23 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-    return render_template('account.html')
+    contacts = Contacts.query.all()
+    return render_template('account.html',contacts=contacts)
+
+@app.route("/contacts", methods=['GET', 'POST'])
+@login_required
+def contacts():
+    form = ContactForm()
+    if form.validate_on_submit():
+        contact = Contacts(name=form.name.data, phone=form.phone.data, relation=form.relation.data, client=current_user)
+        db.session.add(contact)
+        db.session.commit()
+        flash('Your contact has been successfully added!', 'success')
+        return redirect(url_for('account'))
+    return render_template('contacts.html', form=form)    
+
+@app.route("/send_sos")
+@login_required
+def send_sos():
+    flash('Your emergency sos has been successfully sent to your contact!', 'success')
+    return redirect(url_for('account'))
