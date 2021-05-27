@@ -7,7 +7,7 @@
             <div class="description">
                 <h1>Sashakt</h1>
                 <p>You Never Walk Alone!</p>
-                <button class="btn btn-outline-secondary btn-lg"><a href="">Know More!</button></a>
+                <button class="btn btn-outline-secondary btn-lg"><a href="{{url_for('blogs')}}">Read Blogs!</button></a>
                 <button class="btn btn-outline-secondary btn-lg"><a href="">Instant Help!</button></a>
                 {% if current_user.is_authenticated %}
                     <button class="btn btn-outline-secondary btn-lg"><a href="{{url_for('account')}}">Account</button></a>

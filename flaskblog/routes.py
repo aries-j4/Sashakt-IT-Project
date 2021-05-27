@@ -70,3 +70,11 @@ def contacts():
 def send_sos():
     flash('Your emergency sos has been successfully sent to your contact!', 'success')
     return redirect(url_for('account'))
+
+@app.route('/blogs/')
+def blogs():
+    return render_template("blogs.html")
+
+@app.route('/stories/')
+def stories():
+    return render_template("stories.html")
