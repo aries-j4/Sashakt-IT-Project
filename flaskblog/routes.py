@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request
 from flaskblog import app, db, bcrypt
-from flaskblog.forms import RegistrationForm, LoginForm, ContactForm
-from flaskblog.models import User, Contacts
+from flaskblog.forms import RegistrationForm, LoginForm, ContactForm, PostForm
+from flaskblog.models import User, Contacts, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
@@ -75,6 +75,20 @@ def send_sos():
 def blogs():
     return render_template("blogs.html")
 
-@app.route('/stories/')
+@app.route("/stories")
 def stories():
-    return render_template("stories.html")
+    posts = Post.query.all()
+    return render_template('stories.html', posts=posts)
+
+@app.route("/create_post", methods=['GET', 'POST'])
+@login_required
+def create_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post has been created!', 'success')
+        return redirect(url_for('stories'))
+    return render_template('create_post.html', title='New Post',
+                           form=form, legend='New Post')
