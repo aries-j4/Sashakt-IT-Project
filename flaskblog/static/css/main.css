@@ -1,11 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
 .navbar {
-    background:	rgba(255, 109, 25, 0.753);
+    background:	#3D304F;
 }
 
 .content-section {
-    background-image: url('../images/background.jpg');
+    background-image: url('../images/background2.jpg');
     background-size: cover;
     background-position: center;
     position: absolute;
@@ -163,7 +163,7 @@ button:hover{
   width: 15%;
   cursor:pointer;
   border-radius: 20px;
-  background:linear-gradient(to right, #3b0681,#0b0657);;
+  background:linear-gradient(to right, #3D304F,#0b0657);;
   margin: 0px 30px;
   border: 1px solid #fff;
   font-family: 'Times New Roman', serif;
@@ -183,7 +183,7 @@ button:hover{
 }
 
 .nav-link:hover {
-    color: #000;
+    color: #45c6d1;
 }
 
 .navbar-collapse {
@@ -239,6 +239,69 @@ button:hover{
     animation: 10s linear 0s normal none infinite animate;
    
   }
+
+
+ .content{ 
+    text-align: left;
+    color: #0a3dad;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin-top: 80px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 8px;
+    background-color: #3D304F;
+    padding: 30px;
+    border-width: 2px;
+    border-color: #f4f4f4;}
+
+  .article-title {
+    font-size: 2rem;
+    color: #F8B255;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+}
+
+
+.article-content  {
+    font-size: 1.5rem;
+    color: #FCEFE3;
+    text-align: right;
+    margin-top: -1rem;
+    margin-right: 2rem;
+    font-family: 'Times New Roman', serif;
+    text-align: center;
+
+}
+ 
+.mr-2{
+  font-size: 1rem;
+  color: #F8B255;
+  text-align: right;
+  margin-top: -1rem;
+  margin-right: 2rem;
+  font-family: 'Times New Roman', serif;
+}
+.text-muted{
+  font-size: 0.9rem;
+  color: #F8B255 !important;
+  text-align: right;
+  margin-top: 0rem;
+  margin-right: 1.rem;
+  font-family: 'Times New Roman', serif;
+}
+
+
    
   @-webkit-keyframes animate {
     from {background-position:0 0;}
