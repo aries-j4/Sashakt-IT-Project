@@ -1,31 +1,23 @@
-
 (function(){
-  // Functions
-  function buildQuiz(){
-    // variable to store the HTML output
+  
+  function Quiz(){
+
     const output = [];
 
-    // for each question...
-    myQuestions.forEach(
+    ques.forEach(
       (currentQuestion, questionNumber) => {
 
-        // variable to store the list of possible answers
         const answers = [];
 
-        // and for each available answer...
-        for(letter in currentQuestion.answers){
-
-          // ...add an HTML radio button
+        for(i in currentQuestion.answers){
           answers.push(
             `<label>
-              <input type="radio" name="question${questionNumber}" value="${letter}">
-              ${letter} :
-              ${currentQuestion.answers[letter]}
+              <input type="radio" name="question${questionNumber}" value="${i}">
+              ${i} :
+              ${currentQuestion.answers[i]}
             </label>`
           );
         }
-
-        // add this question and its answers to the output
         output.push(
           `<div class="slide">
             <div class="question"> ${currentQuestion.question} </div>
@@ -35,44 +27,34 @@
       }
     );
 
-    // finally combine our output list into one string of HTML and put it on the page
     quizContainer.innerHTML = output.join('');
   }
 
-  function showResults(){
-
-    // gather answer containers from our quiz
+  function Results(){
     const answerContainers = quizContainer.querySelectorAll('.answers');
 
-    // keep track of user's answers
     let numCorrect = 0;
 
-    // for each question...
-    myQuestions.forEach( (currentQuestion, questionNumber) => {
+    ques.forEach( (currentQuestion, questionNumber) => {
 
-      // find selected answer
       const answerContainer = answerContainers[questionNumber];
       const selector = `input[name=question${questionNumber}]:checked`;
       const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-      // if answer is correct
       if(userAnswer === currentQuestion.correctAnswer){
-        // add to the number of correct answers
         numCorrect++;
-
-        // color the answers green
         answerContainers[questionNumber].style.color = 'lightgreen';
       }
-      // if answer is wrong or blank
+
       else{
-        // color the answers red
         answerContainers[questionNumber].style.color = 'red';
       }
     });
 
-    // show number of correct answers out of total
+    window.alert(`${numCorrect} out of ${myQuestions.length}`);
     resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
   }
+
 
   function showSlide(n) {
     slides[currentSlide].classList.remove('active-slide');
@@ -98,15 +80,14 @@
     showSlide(currentSlide + 1);
   }
 
-  function showPreviousSlide() {
+  function showPrevSlide() {
     showSlide(currentSlide - 1);
   }
 
-  // Variables
   const quizContainer = document.getElementById('quiz');
   const resultsContainer = document.getElementById('results');
   const submitButton = document.getElementById('submit');
-  const myQuestions = [
+  const ques = [
     {
       question: "Approximately what percentage of women worldwide have experienced physical and/or sexual violence?",
       answers: {
@@ -132,23 +113,80 @@
         c: "There is no historical significance! The United Nations randomly picked a day that wasn’t already taken by another International Day.",
       },
       correctAnswer: "a"
+    },
+    {
+      question: "Globally, how prevalent is physical and sexual intimate partner violence and/or sexual violence by a non-partner?",
+      answers: {
+        a: "1 in 6 women experience this",
+        b: "1 in 4 women experience this",
+        c: "1 in 3 women experience this",
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "Health care providers cannot offer anything for women experiencing violence true/false",
+      answers: {
+        a: "True",
+        b: "False",
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Sometimes it is women’s own fault if they are raped",
+      answers: {
+        a: "True",
+        b: "False",
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "The Convention on the Elimination of all forms of Discrimination Against Women(CEDAW), was adopted by the United Nations General Assembly in",
+      answers: {
+        a: "1981",
+        b: "1975",
+        c: "1979"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "The Declaration on the Elimination of Violence Against Women was made by the United Nations General Assembly in",
+      answers: {
+        a: "1981",
+        b: "1993",
+        c: "1979"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Can any person with information about a sexual harassment incident file a complaint to the Complaints Committee?",
+      answers: {
+        a: "Yes, only with written consent of the complainant",
+        b: "Yes, even without written consent of the complainant",
+        c: "No"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Does the Criminal Law (Amendment) Act 2013 recognize stalking as a criminal act?",
+      answers: {
+        a: "Yes",
+        b: "No"
+      },
+      correctAnswer: "a"
     }
   ];
 
-  // Kick things off
-  buildQuiz();
+  Quiz();
 
-  // Pagination
   const previousButton = document.getElementById("previous");
   const nextButton = document.getElementById("next");
   const slides = document.querySelectorAll(".slide");
+
   let currentSlide = 0;
 
-  // Show the first slide
   showSlide(currentSlide);
 
-  // Event listeners
-  submitButton.addEventListener('click', showResults);
-  previousButton.addEventListener("click", showPreviousSlide);
+  submitButton.addEventListener('click', Results);
+  previousButton.addEventListener("click", showPrevSlide);
   nextButton.addEventListener("click", showNextSlide);
 })();
