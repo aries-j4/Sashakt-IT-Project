@@ -43,3 +43,11 @@ class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Post')
+
+
+class SendSMS(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    number = StringField('Phone', validators=[DataRequired()])
+    address = StringField('Address', validators=[DataRequired()])
+    complaint = TextAreaField('Complaint/Issue', validators=[DataRequired()])
+    submit = SubmitField('Send SMS')

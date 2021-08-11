@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
-from flaskblog import app, db, bcrypt
-from flaskblog.forms import RegistrationForm, LoginForm, ContactForm, PostForm
+from flaskblog import app, db, bcrypt, client, sms
+from flaskblog.forms import RegistrationForm, LoginForm, ContactForm, PostForm, SendSMS
 from flaskblog.models import User, Contacts, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -51,7 +51,8 @@ def logout():
 @login_required
 def account():
     contacts = Contacts.query.all()
-    return render_template('account.html',contacts=contacts)
+    posts = Post.query.all()
+    return render_template('account.html',contacts=contacts, posts=posts)
 
 @app.route("/contacts", methods=['GET', 'POST'])
 @login_required
@@ -92,3 +93,34 @@ def create_post():
         return redirect(url_for('stories'))
     return render_template('create_post.html', title='New Post',
                            form=form, legend='New Post')
+
+@app.route("/send_sms", methods=['GET', 'POST'])
+def send_sms():
+    form = SendSMS()
+    if form.validate_on_submit():
+        sms1 = SendSMS(name=form.name.data, number=form.number.data, address=form.address.data, complaint=form.complaint.data )
+        message = "Name: " + request.form['name'] + " Mobile: " + request.form['number'] + " living in " + request.form['address'] + " has a complaint saying: " + request.form['complaint']
+        #sms_text = "Name: "+str(form.name)+" Mobile: " + str(form.number) + " living in " + str(form.address) + " has a complaint saying: " + str(form.complaint)
+        print(message)
+        responseData = sms.send_message(
+        {
+            "from": "Vonage APIs",
+            "to": "917042685209",
+            "text": message,
+        }
+        )
+        if responseData["messages"][0]["status"] == "0":
+            flash('Your sms has been sent!', 'success')
+            return redirect(url_for('send_sms_successful'))
+        else:
+            flash(f"Message failed with error: {responseData['messages'][0]['error-text']}")
+    return render_template('send_sms.html', form=form)
+
+@app.route('/send_sms_successful/')
+def send_sms_successful():
+    return render_template('send_sms_successful.html')
+
+
+@app.route('/tweet_analysis')
+def tweet_analysis():
+    return render_template('tweet_analysis.html')

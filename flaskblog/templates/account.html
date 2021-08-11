@@ -1,6 +1,7 @@
 {%extends "layout.html"%}
 {%block content%}
-
+<div class = "container">
+    <div class="col-lg-8 col-md-8 col-sm-12">
     <div class ="box">
         <div class="media">
             <img class="rounded-circle account-img" src="{{ image_file }}">
@@ -31,8 +32,31 @@
               <button type="button" class="btn btn-secondary">Update Account</button>
               <button type="button" class="btn btn-secondary"><a href="{{ url_for('contacts') }}">Add Contacts</a></button>
             </div>
-            <right><button type="button" class="btn btn-danger" onclick="window.location.href='{{ url_for( 'send_sos') }}'">Send SOS</button></right>
         </div>
     </div>
+    </div>
+    <div class="col-lg-0 col-md-0 col-sm-12">
+        <div class = "container">
+        <div class = "box">
+            <H2>Post By {{ current_user.username }}</H1>
+                {% for post in posts %}
+                    {% if post.author == current_user %}
+                        <div class = "card">
+                            <div class = "content">
+                                <tr>
+                                    <td><a class="mr-2" href="#">{{ post.author.username }}</a></td>
+                                    <td><small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small></td>
+                                    <td><h2><center><a class="article-title" href="">{{ post.title }}</a></center></h2></td>
+                                    <br>
+                                    <td><p class="article-content">{{ post.content }}</p></td>
+                                </tr>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+        </div>
+        </div>
+    </div>
+</div>
 
 {%endblock%}
