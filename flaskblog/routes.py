@@ -124,3 +124,7 @@ def send_sms_successful():
 @app.route('/tweet_analysis')
 def tweet_analysis():
     return render_template('tweet_analysis.html')
+
+@app.route('/self_defense')
+def self_defense():
+    return render_template('self_defense.html')
