@@ -41,7 +41,7 @@
             <H2>Post By {{ current_user.username }}</H1>
                 {% for post in posts %}
                     {% if post.author == current_user %}
-                        <div class = "card">
+                        <div class = "card1">
                             <div class = "content">
                                 <tr>
                                     <td><a class="mr-2" href="#">{{ post.author.username }}</a></td>

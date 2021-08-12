@@ -20,8 +20,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('home')}}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('about')}}">About</a>
+                <li class="dropdown">
+                    <button class="dropbtn">More Info</button>
+                    <div class="dropdown-content">
+                      <a href="{{url_for('about')}}">About Sashakt</a>
+                      <a href="#about">About The Team</a>
+                      <a href="{{url_for('self_defense')}}">Self Defence</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('blogs')}}">Blogs</a>
