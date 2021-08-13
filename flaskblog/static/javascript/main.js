@@ -1,23 +1,30 @@
 (function(){
-  
-  function Quiz(){
-
+ 
+  function buildQuiz(){
+   
     const output = [];
 
-    ques.forEach(
+   
+    myQuestions.forEach(
       (currentQuestion, questionNumber) => {
 
+        
         const answers = [];
 
-        for(i in currentQuestion.answers){
+       
+        for(letter in currentQuestion.answers){
+
+         
           answers.push(
             `<label>
-              <input type="radio" name="question${questionNumber}" value="${i}">
-              ${i} :
-              ${currentQuestion.answers[i]}
+              <input type="radio" name="question${questionNumber}" value="${letter}">
+              ${letter} :
+              ${currentQuestion.answers[letter]}
             </label>`
           );
         }
+
+        
         output.push(
           `<div class="slide">
             <div class="question"> ${currentQuestion.question} </div>
@@ -27,34 +34,57 @@
       }
     );
 
+    
     quizContainer.innerHTML = output.join('');
   }
 
-  function Results(){
+  function showResults(){
+
+   
     const answerContainers = quizContainer.querySelectorAll('.answers');
 
+   
     let numCorrect = 0;
 
-    ques.forEach( (currentQuestion, questionNumber) => {
+    
+    myQuestions.forEach( (currentQuestion, questionNumber) => {
 
+      
       const answerContainer = answerContainers[questionNumber];
       const selector = `input[name=question${questionNumber}]:checked`;
       const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
+      
       if(userAnswer === currentQuestion.correctAnswer){
+        
         numCorrect++;
-        answerContainers[questionNumber].style.color = 'lightgreen';
-      }
 
+        
+        answerContainers[questionNumber].style.color = 'green';
+      }
+     
       else{
+        
         answerContainers[questionNumber].style.color = 'red';
       }
     });
 
-    window.alert(`${numCorrect} out of ${myQuestions.length}`);
-    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+    if(numCorrect > 7)
+        {
+          resultsContainer.innerHTML = `<div class="ansbox">You scored: ${numCorrect} out of ${myQuestions.length}
+                                        <p> Great Job!!!</p></div>`;
+        }
+        else if(numCorrect > 3)
+        {
+          resultsContainer.innerHTML = `<div class="ansbox">You scored: ${numCorrect} out of ${myQuestions.length}
+                                        <p> Keep Going! You can do much better</p></div>`;
+        }
+        else
+        {
+          resultsContainer.innerHTML = `<div class="ansbox">You scored: ${numCorrect} out of ${myQuestions.length}
+                                        <p> Need to brush up on some general awareness...eh?</p></div>`;
+        }
   }
-
 
   function showSlide(n) {
     slides[currentSlide].classList.remove('active-slide');
@@ -80,14 +110,14 @@
     showSlide(currentSlide + 1);
   }
 
-  function showPrevSlide() {
+  function showPreviousSlide() {
     showSlide(currentSlide - 1);
   }
 
   const quizContainer = document.getElementById('quiz');
   const resultsContainer = document.getElementById('results');
   const submitButton = document.getElementById('submit');
-  const ques = [
+  const myQuestions = [
     {
       question: "Approximately what percentage of women worldwide have experienced physical and/or sexual violence?",
       answers: {
@@ -176,17 +206,17 @@
     }
   ];
 
-  Quiz();
+
+  buildQuiz();
 
   const previousButton = document.getElementById("previous");
   const nextButton = document.getElementById("next");
   const slides = document.querySelectorAll(".slide");
-
   let currentSlide = 0;
 
   showSlide(currentSlide);
 
-  submitButton.addEventListener('click', Results);
-  previousButton.addEventListener("click", showPrevSlide);
+  submitButton.addEventListener('click', showResults);
+  previousButton.addEventListener("click", showPreviousSlide);
   nextButton.addEventListener("click", showNextSlide);
 })();
