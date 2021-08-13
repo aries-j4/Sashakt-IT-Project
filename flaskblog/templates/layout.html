@@ -35,17 +35,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('blogs')}}">Blogs</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('tweet_analysis')}}">Tweet Analysis</a>
+                </li>
                 {% if current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('account')}}">Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
-                    </li>
+                <li class="dropdown">
+                    <button class="dropbtn">Account</button>
+                    <div class="dropdown-content">
+                      <a href="{{url_for('account')}}">See Profile</a>
+                      <a href="{{url_for('logout')}}">Logout</a>
+                    </div>
+                </li>
                 {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('login')}}">Login</a>
-                    </li>
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('register')}}">Register</a>
                     </li>

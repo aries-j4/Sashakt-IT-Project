@@ -1,9 +1,25 @@
 {%extends "layout.html"%}
 {%block content%}
-
-    <H1>Thank you for choosing Sashakt!</H1>
+<div class ="display-success" style = "padding : 255px">
+    <style>
+        body {
+          background-image: url(https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-03.jpg);
+        }
+      </style>
+    <h1,h3 style="
+    
+    padding: 255px;
+    
+    font-family: 'Times New Roman', serif;
+    font-size: 20px;
+    text-transform: uppercase;
+   
+    color: #3d303d;
+    text-align: center;
+    margin-top: 30px;
+"><h1>Thank you for choosing Sashakt!</h1>
     <h3>We will reach out to you very soon with best of our help and solutions.</h3>
-    <h3> Till then read our <a href="{{url_for('blogs')}}">blogs</a> to help yourself more in these difficult times</h3>
-
+    <h3> Till then read our <a href="{{url_for('blogs')}}">blogs</a> and <a href="{{url_for('self_defense')}}">Self Defense</a> to help yourself more in these difficult times</h3>
+</div>
 
 {%endblock%}
