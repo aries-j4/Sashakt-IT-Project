@@ -51,3 +51,7 @@ class SendSMS(FlaskForm):
     address = StringField('Address', validators=[DataRequired()])
     complaint = TextAreaField('Complaint/Issue', validators=[DataRequired()])
     submit = SubmitField('Send SMS')
+
+class HashtagtForm(FlaskForm):
+    hashtag = StringField('Hashtag', validators=[DataRequired()])
+    submit = SubmitField('Analyze')

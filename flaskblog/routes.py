@@ -1,8 +1,12 @@
 from flask import render_template, url_for, flash, redirect, request
-from flaskblog import app, db, bcrypt, client, sms
-from flaskblog.forms import RegistrationForm, LoginForm, ContactForm, PostForm, SendSMS
+from flaskblog import app, db, bcrypt, client, sms, api
+from flaskblog.forms import RegistrationForm, LoginForm, ContactForm, PostForm, SendSMS, HashtagtForm
 from flaskblog.models import User, Contacts, Post
 from flask_login import login_user, current_user, logout_user, login_required
+from flaskblog.sentiment import get_tweets, tweet_to_data_frame, cleantext, getPolarity, getSubjectivity, getAnalysis, positivetweets, negativetweets, neutraltweets, wordcloud
+import re
+import collections
+from wordcloud import WordCloud, STOPWORDS
 
 @app.route('/')
 @app.route('/home/')
@@ -100,8 +104,7 @@ def send_sms():
     if form.validate_on_submit():
         sms1 = SendSMS(name=form.name.data, number=form.number.data, address=form.address.data, complaint=form.complaint.data )
         message = "Name: " + request.form['name'] + " Mobile: " + request.form['number'] + " living in " + request.form['address'] + " has a complaint saying: " + request.form['complaint']
-        #sms_text = "Name: "+str(form.name)+" Mobile: " + str(form.number) + " living in " + str(form.address) + " has a complaint saying: " + str(form.complaint)
-        print(message)
+        #print(message)
         responseData = sms.send_message(
         {
             "from": "Vonage APIs",
@@ -120,11 +123,49 @@ def send_sms():
 def send_sms_successful():
     return render_template('send_sms_successful.html')
 
-
-@app.route('/tweet_analysis')
+@app.route("/tweet_analysis", methods=['GET', 'POST'])
 def tweet_analysis():
-    return render_template('tweet_analysis.html')
+    form = HashtagtForm()
+    if form.validate_on_submit():
+        hash1 = request.form['hashtag']
+        hash = request.form['hashtag'] + ' -filter:retweets'
+        alltweets = get_tweets(hash)
+        data = tweet_to_data_frame(alltweets)
+        data['Tweets'] = data['Tweets'].apply(cleantext)
+        data['Subjectivity'] = data['Tweets'].apply(getSubjectivity)
+        data['Polarity'] = data['Tweets'].apply(getPolarity)
+        data['Analysis'] = data['Polarity'].apply(getAnalysis)
+        pos = positivetweets(data)
+        neg = negativetweets(data)
+        neu = neutraltweets(data)
+        division = [pos, neg, neu]
+        words = []
+        for tweet in data['Tweets']:
+            wordList = re.sub("[^\w]", " ",  tweet).split()
+            words = words + wordList
+        wordcloud(data)
+        words = []
+        for tweet in data['Tweets']:
+            wordList = re.sub("[^\w]", " ",  tweet).split()
+            words = words + wordList
+        stopwords = STOPWORDS
+        stopwords.add('amp')
+        filtered_words = [word for word in words if word not in stopwords]
+        counted_words = collections.Counter(filtered_words)
+
+        common_words = []
+        counts = []
+        for letter, count in counted_words.most_common(10):
+            common_words.append(letter)
+            counts.append(count)
+        return render_template('result_analysis.html', hash1=hash1, data = data, pos=pos, neg=neg, neu=neu, division=division, common_words=common_words, counts=counts)
+    return render_template('tweet_analysis.html', form=form)
+
 
 @app.route('/self_defense')
 def self_defense():
     return render_template('self_defense.html')
+
+@app.route('/result_analysis')
+def result_analysis():
+    return render_template('result_analysis.html')
