@@ -150,6 +150,10 @@ def tweet_analysis():
             words = words + wordList
         stopwords = STOPWORDS
         stopwords.add('amp')
+        stopwords.add('I')
+        stopwords.add('The')
+        stopwords.add('us')
+        stopwords.add('re')
         filtered_words = [word for word in words if word not in stopwords]
         counted_words = collections.Counter(filtered_words)
 

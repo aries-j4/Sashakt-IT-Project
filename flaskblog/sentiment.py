@@ -68,6 +68,14 @@ def wordcloud(data):
     allWords = ' '.join([twts for twts in data['Tweets']])
     stopwords = STOPWORDS
     stopwords.add('amp')
+    stopwords.add('I')
+    stopwords.add('The')
+    stopwords.add('us')
+    stopwords.add('re')
+    stopwords.add('able')
+    stopwords.add('give')
+    stopwords.add('able')
+    stopwords.add('give')
     wordCloud = WordCloud(stopwords=stopwords, width = 800, height = 500, random_state = 21, max_font_size = 100).generate(allWords)
 
     plt.imshow(wordCloud, interpolation = "bilinear")
