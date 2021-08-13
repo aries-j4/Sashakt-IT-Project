@@ -1,29 +1,57 @@
 {%extends "layout.html"%}
 {%block content%}
 
-<div class="content-section-about">
+<div>
+  <div class = "welcome">
+    <div class="abouttext">
+      <p>About Us</p>
+      <p>
+        <button><a href="#target" style="color: white">Take a Quiz!</a></button>
+      </p>
+    </div>
+  </div>
+<div class="about">
+  <div class="transbox">
   <h1><center>About Us</h1></center>
+  <div class= "div1">
+    <div class="content1">
   <p>
-    Various types of crimes that take place against women such as eve-teasing, harassment, domestic violence, etc. are a cause of major concern for the society and it is crucial that immediate and effective help be provided to victims of such crimes.
+    In Spite of living in a world of technology and opinions, many people feel helpless and in dire need of assistance due to lack of considerate people in their vicinity. Moreover, in the era of social media addiction, platforms like Twitter have become prone to malicious and hate tweets.
   </p>
+    </div>
+  <div class="image1"> </div>
+  </div>
+  <div class="div2">
+   <div class = "image2"></div> 
+    <div class="content2">
   <p>
-    ‘Sashakt’ is an initiative towards the cause of women safety and security that will provide support to victims be it mental or physical and also help spread awareness about such issues to help empower women. 
+    ‘Sashakt’ is an initiative aimed at providing the users to combat the above problem statement through our various features. It includes providing assistance through filing-complaint(via sms), reading and composing blogs, resource pages ( self-defense, quiz pages) and twitter tweet analysis to make them fully aware and equipped in this present world of technology.
   </p>
-  Let's see how much you know about crimes against women and ways to be safe with this short quiz!
+    </div>
+  </div>
+  <p>Let's see how much you know about crimes against women and ways to be safe with this short quiz!</p>
+  <a name= "target"></a>
+  </div>
+  
   <p> 
-   <div>
+   <div class = "quizbox">
+     <p>
   <h1><center>Quiz on Some Facts</h1></center>
+
+  <div class="res" id="results"></div>
+
   <div class="quiz-container">
     <div id="quiz"></div>
   </div>
+  <p>
   <center>
     <button id="previous">Previous Question</button>
     <button id="next">Next Question</button>
     <button id="submit">Submit Quiz</button>
  </center>
-  <div id="results"></div>
+ </p>
+</p>
 </div> 
-  </p>
 </div>
 
 {%endblock%}
