@@ -13,7 +13,7 @@ from wordcloud import WordCloud, STOPWORDS
 
 def get_tweets(hashtag):
     all_tweets = []
-    for tweet in tweepy.Cursor(api.search, q=hashtag, lang='en', tweet_mode = 'extended').items(20):
+    for tweet in tweepy.Cursor(api.search, q=hashtag, lang='en', tweet_mode = 'extended').items(500):
         all_tweets.append(tweet.full_text)
     return all_tweets
 

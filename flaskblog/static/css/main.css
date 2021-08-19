@@ -572,12 +572,12 @@ th {
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
 
-* {
+/** {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
 }
-
+*/
 
 .hero-container {
 	margin: auto;
@@ -695,12 +695,16 @@ th {
 }
 
 
-.pl-0, .px-0 {
+/* .pl-0, .px-0 {
   padding-left: 0!important;
   background-image: url(../images/bg2.jpg);
   overflow: hidden;
-}
+} */
 
+dl, ol, ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 .about{
   margin:0;
@@ -851,4 +855,33 @@ div.quizbox p {
   background-size: contain;
   background-repeat:repeat;
   background-size: 100%;
+}
+
+.content:hover, .form-box:hover{
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+  transform: scale(1.08);
+}
+
+.disclaimer {
+  position:fixed;
+  width:100%;
+  left:0;
+  bottom:0;
+  text-align:center;
+  }
+
+
+.tweet{
+  background-image: url(../images/analysis.jpg);
+  padding-bottom: 10px;
+}
+
+.account1{
+  background-image: url(../images/ds.png);
+  padding-top: 10px;
+}
+.stories1{
+  background-image: url(../images/bg2.jpg);
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

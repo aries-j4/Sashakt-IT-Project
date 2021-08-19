@@ -70,11 +70,11 @@ def contacts():
         return redirect(url_for('account'))
     return render_template('contacts.html', form=form)    
 
-@app.route("/send_sos")
-@login_required
-def send_sos():
-    flash('Your emergency sos has been successfully sent to your contact!', 'success')
-    return redirect(url_for('account'))
+# @app.route("/send_sos")
+# @login_required
+# def send_sos():
+#     flash('Your emergency sos has been successfully sent to your contact!', 'success')
+#     return redirect(url_for('account'))
 
 @app.route('/blogs/')
 def blogs():
@@ -154,6 +154,9 @@ def tweet_analysis():
         stopwords.add('The')
         stopwords.add('us')
         stopwords.add('re')
+        stopwords.add('s')
+        stopwords.add('t')
+        stopwords.add('It')
         filtered_words = [word for word in words if word not in stopwords]
         counted_words = collections.Counter(filtered_words)
 

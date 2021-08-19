@@ -1,25 +1,36 @@
 {%extends "layout.html"%}
 {%block content%}
-<div class ="display-success" style = "padding : 255px">
-    <style>
-        body {
-          background-image: url(https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-03.jpg);
-        }
-      </style>
-    <h1,h3 style="
-    
-    padding: 255px;
-    
-    font-family: 'Times New Roman', serif;
-    font-size: 20px;
-    text-transform: uppercase;
-   
-    color: #3d303d;
+<div class ="display-success" style = "padding : 200px; background-image: url('https://i.pinimg.com/originals/a9/6f/17/a96f177c066ae8c5102cc77079466230.jpg'); 
+background-repeat: no-repeat;
+overflow: hidden;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+ ">
+  <div class = "card1" >
+    <div style="border-radius:200px; height:200px; width:60px; margin:0 auto;">
+      <i class="checkmark" style ="color: #9ABC66;
+      font-size: 100px;
+      line-height: 200px;
+      margin-left:-15px;">✓</i>
+    </div>
+    <div class = "content" style ="box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s;">
+    <h1 style="
     text-align: center;
-    margin-top: 30px;
-"><h1>Thank you for choosing Sashakt!</h1>
-    <h3>We will reach out to you very soon with best of our help and solutions.</h3>
-    <h3> Till then read our <a href="{{url_for('blogs')}}">blogs</a> and <a href="{{url_for('self_defense')}}">Self Defense</a> to help yourself more in these difficult times</h3>
+    color: #3D304f;
+    font-family: 'Timmes New Roman',serif;">Thank you for choosing Sashakt!</h1>
+    <h3 style="
+    text-align: center;
+    color: black;
+    font-family: 'Timmes New Roman',serif;">We will reach out to you very soon with best of our help and solutions.</h3>
+    <h3 style="
+    text-align: center;
+    color: black;
+    font-family: 'Timmes New Roman',serif;"> Till then read our <a href="{{url_for('blogs')}}">blogs</a> and <a href="{{url_for('self_defense')}}">Self Defense</a> to help yourself more in these difficult times</h3>
+</div>
+  </div>
 </div>
 
 {%endblock%}
+

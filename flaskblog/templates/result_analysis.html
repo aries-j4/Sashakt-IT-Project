@@ -1,9 +1,15 @@
 {%extends "layout.html"%}
 {%block content%}
-<br>
-<h1><center>Hashtag: {{hash1}}</center></h1>
+<div class = "tweet"><br>
+<h1 style = "padding : 30px; font-size: 4rem;
+font-family: ui-monospace;
+color :#190831;" ><u><center>Hashtag: {{hash1}}</center></u></h1>
 <hr>
-<div class = "form-box">
+<div class = "row">
+    <div class = "column">
+<div class = "form-box" style ="box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+transition: all 0.2s; height: 650px;
+    width: 500px;">
 
 <h4>Percentage Division</h4>
 <p>The percentage of positive tweets are-: {{ pos }} %</p>
@@ -14,9 +20,17 @@
     <canvas id="percentage_division"></canvas>
 </div>
 </div>
-<div class = "form-box">
+</div>
+<div class = "column" style="
+padding-left: 250px;
+padding-top: 25px;
+">
+<div class = "form-box" style= "box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+transition: all 0.2s;">
     <h4>Most Common Words-:</h4>
-    <table>
+    <center box-sizing: border-box;
+    margin: 0;>
+    <table border = 1, CELLPADDING="20" CELLSPACING="20", width =10>
         <tr>
             <th>Word</th>
             <th>Frequency</th>
@@ -28,6 +42,9 @@
         </tr>
         {% endfor %}
     </table>
+    </center>
+</div>
+</div>
 </div>
 
 {% block javascript%}
@@ -71,6 +88,6 @@
     })
 
     </script>
-
+</div>
 {%endblock%}
 {%endblock%}
