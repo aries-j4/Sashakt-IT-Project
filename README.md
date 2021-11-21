@@ -1,5 +1,5 @@
 # Sashakt - Be Aware, Be Secure
-### Sashakt - Be Aware, Be Secure is a project aimed at combating the above problem statement through our various features. It includes providing assistance through filing-complaint(via sms), reading and composing blogs, resource pages ( self-defense, quiz pages) and twitter tweet analysis to make them fully aware and equipped in this present world of technology. 
+Sashakt - Be Aware, Be Secure is a project aimed at providing assistance to people who need it through our various features. It includes providing assistance through filing-complaint(via sms), reading and composing blogs, resource pages ( self-defense, quiz pages) and twitter tweet analysis to make them fully aware and equipped in this present world of technology. 
 
 
 ### 📌 Table of Contents
